@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationLevel="5" indentationWidth="10" reuseIdentifier="customMovieCell" rowHeight="126" id="KGk-i7-Jjw" customClass="MovieListCustomCell" customModule="SearchiTunesMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="125.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fbW-w6-fj7">
+                        <rect key="frame" x="10" y="10" width="67" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="hgk-Q0-llI"/>
+                            <constraint firstAttribute="width" constant="67" id="tJg-Tb-OL2"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="kf4-W8-1d8">
+                        <rect key="frame" x="87" y="42" width="223" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDI-C3-cAP">
+                                <rect key="frame" x="0.0" y="0.0" width="92.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Year" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFn-Ua-2Ze">
+                                <rect key="frame" x="0.0" y="21.5" width="72.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fbW-w6-fj7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3T5-6h-SoX"/>
+                    <constraint firstItem="fbW-w6-fj7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PL1-Jq-lsq"/>
+                    <constraint firstItem="kf4-W8-1d8" firstAttribute="leading" secondItem="fbW-w6-fj7" secondAttribute="trailing" constant="10" id="SX5-ta-kBl"/>
+                    <constraint firstAttribute="bottom" secondItem="fbW-w6-fj7" secondAttribute="bottom" constant="10" id="UAO-gK-DLp"/>
+                    <constraint firstAttribute="trailing" secondItem="kf4-W8-1d8" secondAttribute="trailing" constant="10" id="b9J-E7-102"/>
+                    <constraint firstItem="kf4-W8-1d8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="i1r-Rr-wo6"/>
+                    <constraint firstItem="fbW-w6-fj7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sHM-df-JVC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieImageView" destination="fbW-w6-fj7" id="AXb-SY-Egs"/>
+                <outlet property="movieName" destination="ZDI-C3-cAP" id="EXC-ht-hJ5"/>
+                <outlet property="movieReleaseYear" destination="zFn-Ua-2Ze" id="wds-sD-h8j"/>
+            </connections>
+            <point key="canvasLocation" x="-55.072463768115945" y="114.50892857142857"/>
+        </tableViewCell>
+    </objects>
+</document>
