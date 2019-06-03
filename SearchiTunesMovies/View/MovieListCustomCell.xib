@@ -62,7 +62,7 @@
                 <outlet property="movieName" destination="ZDI-C3-cAP" id="EXC-ht-hJ5"/>
                 <outlet property="movieReleaseYear" destination="zFn-Ua-2Ze" id="wds-sD-h8j"/>
             </connections>
-            <point key="canvasLocation" x="-55.072463768115945" y="114.50892857142857"/>
+            <point key="canvasLocation" x="94" y="88"/>
         </tableViewCell>
     </objects>
 </document>

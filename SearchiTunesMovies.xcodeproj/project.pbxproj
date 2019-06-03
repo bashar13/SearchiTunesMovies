@@ -11,6 +11,8 @@
 		214BA65222A510B5005BE38C /* MovieListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */; };
 		214BA65322A510B5005BE38C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA65022A510B5005BE38C /* ViewController.swift */; };
 		214BA65B22A510F6005BE38C /* SearchiTunesMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA65A22A510F6005BE38C /* SearchiTunesMoviesUITests.swift */; };
+		214BA66922A517A4005BE38C /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66822A517A4005BE38C /* Connectivity.swift */; };
+		214BA66B22A52D09005BE38C /* HTTPRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66A22A52D09005BE38C /* HTTPRequestManager.swift */; };
 		21C33BC622A1943500A8765A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C33BC522A1943500A8765A /* AppDelegate.swift */; };
 		21C33BCD22A1943700A8765A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21C33BCC22A1943700A8765A /* Assets.xcassets */; };
 		21C33BD022A1943700A8765A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C33BCE22A1943700A8765A /* LaunchScreen.storyboard */; };
@@ -48,6 +50,8 @@
 		214BA65822A510F6005BE38C /* SearchiTunesMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchiTunesMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		214BA65A22A510F6005BE38C /* SearchiTunesMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesMoviesUITests.swift; sourceTree = "<group>"; };
 		214BA65C22A510F6005BE38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		214BA66822A517A4005BE38C /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		214BA66A22A52D09005BE38C /* HTTPRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestManager.swift; sourceTree = "<group>"; };
 		21C33BC222A1943500A8765A /* SearchiTunesMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchiTunesMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C33BC522A1943500A8765A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21C33BCC22A1943700A8765A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,6 +106,42 @@
 			path = SearchiTunesMoviesUITests;
 			sourceTree = "<group>";
 		};
+		214BA66222A5120F005BE38C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21C33BFD22A19F2400A8765A /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		214BA66322A5124C005BE38C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				214BA64E22A510B5005BE38C /* Main.storyboard */,
+				214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */,
+				21C33BCE22A1943700A8765A /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		214BA66422A51281005BE38C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				214BA65022A510B5005BE38C /* ViewController.swift */,
+				21C33BF922A19B3200A8765A /* MovieListCustomCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		214BA66722A5175B005BE38C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				214BA66822A517A4005BE38C /* Connectivity.swift */,
+				214BA66A22A52D09005BE38C /* HTTPRequestManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		21C33BB922A1943500A8765A = {
 			isa = PBXGroup;
 			children = (
@@ -127,15 +167,13 @@
 		21C33BC422A1943500A8765A /* SearchiTunesMovies */ = {
 			isa = PBXGroup;
 			children = (
+				214BA66722A5175B005BE38C /* Network */,
+				214BA66422A51281005BE38C /* Controller */,
+				214BA66322A5124C005BE38C /* View */,
+				214BA66222A5120F005BE38C /* Model */,
 				21C33BC522A1943500A8765A /* AppDelegate.swift */,
 				21C33BCC22A1943700A8765A /* Assets.xcassets */,
-				21C33BCE22A1943700A8765A /* LaunchScreen.storyboard */,
-				214BA64E22A510B5005BE38C /* Main.storyboard */,
-				214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */,
-				214BA65022A510B5005BE38C /* ViewController.swift */,
 				21C33BD122A1943700A8765A /* Info.plist */,
-				21C33BF922A19B3200A8765A /* MovieListCustomCell.swift */,
-				21C33BFD22A19F2400A8765A /* Movie.swift */,
 			);
 			path = SearchiTunesMovies;
 			sourceTree = "<group>";
@@ -390,10 +428,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				214BA66922A517A4005BE38C /* Connectivity.swift in Sources */,
 				21C33BFB22A19B3200A8765A /* MovieListCustomCell.swift in Sources */,
 				21C33BFE22A19F2400A8765A /* Movie.swift in Sources */,
 				214BA65322A510B5005BE38C /* ViewController.swift in Sources */,
 				21C33BC622A1943500A8765A /* AppDelegate.swift in Sources */,
+				214BA66B22A52D09005BE38C /* HTTPRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
