@@ -23,14 +23,31 @@ enum SearchValues: String {
 
 }
 
+let screenSize = UIScreen.main.bounds
+let screenWidth = screenSize.width
+let screenHeight = screenSize.height
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var topDistance : CGFloat {
+        get{
+            if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
+                return 0
+            } else{
+                let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
+                let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
+                return barHeight + statusBarHeight
+            }
+        }
+    }
+    
 
+    @IBOutlet weak var searchBarVerticalPosition: NSLayoutConstraint!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var movieListTableView: UITableView!
     var movieArray: [Movie] = [Movie] ()
     let baseURL = "https://itunes.apple.com/search?"
-    
+    var noResultLabel = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -44,8 +61,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let tapGesture = UITapGestureRecognizer(target:self, action: #selector(didViewTapped))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
-        searchBar.center.y = view.center.y
         configureTableView()
+        movieListTableView.isHidden = true
        
     }
 
@@ -67,8 +84,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath) as! MovieListCustomCell
+//        cell.contentView.backgroundColor = .black
         showMovieDetailPopUp(cellIndex: indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
 //    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -99,14 +118,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         present(alertPopUp, animated: true, completion: nil)
         
     }
+    
+    
 
 }
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
         if searchBar.text?.count != 0 {
             movieArray.removeAll(keepingCapacity: true)
-            SVProgressHUD.show()
+            moveSearchBarToTop()
             let refinedSearchString = searchBar.text?.condenseWhitespace()
             
             let encodedSearchString = encodeInputSearchString(searchString: refinedSearchString!)
@@ -144,16 +166,35 @@ extension ViewController: UISearchBarDelegate {
         if searchBar.text?.count == 0 {
             
             DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
+                searchBar.becomeFirstResponder()
             }
             
         }
     }
     
+    func moveSearchBarToTop() {
+        if searchBar.center.y == view.center.y {
+            let adjustTopMargin = (view.bounds.height/2) - (topDistance + searchBar.bounds.height/2)
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           options: [],
+                           animations: {
+                            self.searchBarVerticalPosition.constant -= adjustTopMargin
+                            self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        
+        SVProgressHUD.show()
+        
+    }
+    
     //MARK: Networking call
     
     func getListOfMovies(url: String) {
-        Alamofire.request(url, method: .get).responseJSON { response in
+        var httpRequest = URLRequest(url: NSURL.init(string: url)! as URL)
+        httpRequest.httpMethod = "get"
+        httpRequest.timeoutInterval = 15
+        Alamofire.request(httpRequest).responseJSON { response in
             if response.result.isSuccess {
                 print("Success")
                 let movieListJSON: JSON = JSON(response.result.value!)
@@ -179,6 +220,7 @@ extension ViewController: UISearchBarDelegate {
     func updateMovieData(json: JSON) {
         
         if let searchCount = json["resultCount"].int {
+            print(searchCount)
             for movieItem in 0..<searchCount {
                 let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: json["results"][movieItem]["releaseDate"].stringValue, directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
                 movieArray.append(movie)
@@ -192,7 +234,25 @@ extension ViewController: UISearchBarDelegate {
     
     func updateUITableViewWithMovieData() {
         SVProgressHUD.dismiss()
+        
+        if movieArray.count == 0 {
+            noResultLabel = UILabel(frame: CGRect(x: 0, y: searchBar.bounds.height + topDistance, width: view.frame.size.width/2, height: 60))
+            view.addSubview(noResultLabel)
+            noResultLabel.center.x = view.center.x
+            noResultLabel.textColor = UIColor .white
+            noResultLabel.font = UIFont.systemFont(ofSize: 14.0)
+            noResultLabel.textAlignment = .center
+            noResultLabel.lineBreakMode = .byWordWrapping
+            noResultLabel.numberOfLines = 0;
+            noResultLabel.text = "No movies found with title containing \(searchBar.text!)"
+            
+            movieListTableView.isHidden = true
+        } else {
+            movieListTableView.isHidden = false
+            noResultLabel.isHidden = true
+        }
         movieListTableView.reloadData()
+        
     }
     
 }
