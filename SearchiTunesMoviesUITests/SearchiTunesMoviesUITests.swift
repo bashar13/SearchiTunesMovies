@@ -85,12 +85,12 @@ class SearchiTunesMoviesUITests: XCTestCase {
         deleteKey.tap()
         deleteKey.tap()
         
-        searchBar.typeText("dfefs")
+        searchBar.typeText("Sdfdfdsf")
         searchButton.tap()
         expectation(for: NSPredicate(format: "exists == 0"), evaluatedWith: table, handler: nil)
         waitForExpectations(timeout: 3, handler: nil)
         XCTAssertEqual(app.tables.count, 0)
-        app.staticTexts["No movies found with title containing dfefs"].tap()
+        XCUIApplication().staticTexts["No result with title containing Sdfdfdsf"].tap()
         
     }
     

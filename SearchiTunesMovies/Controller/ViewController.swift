@@ -20,16 +20,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var noResultLabel = UILabel()
     var movieArray: [Movie] = [Movie] ()
     
-    let api = "https://itunes.apple.com"
-    let endpoint = "/search?"
-    
     //measure the total height of status bar + navigation bar
     var topDistance : CGFloat {
         get{
             if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
                 return 0
             } else{
-                let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
+                let barHeight = self.navigationController?.navigationBar.frame.height ?? 0
                 let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
                 return barHeight + statusBarHeight
             }
@@ -45,16 +42,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         movieListTableView.register(UINib.init(nibName:"MovieListCustomCell", bundle: nil), forCellReuseIdentifier: "customMovieCell")
         
         //Initialize tap gesture to hide keyboard on tap outside the search field
-        let tapGesture = UITapGestureRecognizer(target:self, action: #selector(didViewTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didViewTapped))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         
         configureTableView()
+        
+        //hide the tableview initially as the list is empty
         movieListTableView.isHidden = true
        
     }
 
-    //MARK - TableView Data Source Methods
+    // MARK: - TableView Data Source Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieArray.count
@@ -67,57 +66,66 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.movieName.text = movieArray[indexPath.row].name
         cell.movieReleaseYear.text = movieArray[indexPath.row].releaseYear
         let url = URL(string: movieArray[indexPath.row].previewImageURL)
-        let noPreviewImage = UIImage(named: "no-preview.png")
+        let noPreviewImage = UIImage(named: TableViewConstants.noPreviewImage)
         cell.movieImageView.kf.setImage(with: url, placeholder: noPreviewImage)
         
         return cell
-        
     }
     
-    //MARK - TableView Delegate Methods
+    // MARK: TableView Delegate Methods
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showMovieDetailPopUp(cellIndex: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    func configureTableView(){
-        movieListTableView.rowHeight = UITableView.automaticDimension
-        movieListTableView.estimatedRowHeight = 600.0
-        movieListTableView.keyboardDismissMode = .onDrag
-    }
-    
-    //MARK - TableView related methods
+    // MARK: TableView related other methods
     
     //hide keyboard on tap outside search bar
     @objc func didViewTapped() {
         searchBar.endEditing(true)
     }
     
-    //shows movie detail on row selection
+    //Initial configuration of the table view
+    func configureTableView(){
+        movieListTableView.rowHeight = UITableView.automaticDimension
+        movieListTableView.estimatedRowHeight = TableViewConstants.estimatedRowHeight
+        movieListTableView.keyboardDismissMode = .onDrag
+    }
+    
+    
+    /**
+     Shows movie detail on row selection by calling showAlert method
+     - Parameters: cellIndex: selected row number in the table view, an Int value
+     - Returns: None
+     */
     func showMovieDetailPopUp(cellIndex: Int) {
         
         let alertTitle = movieArray[cellIndex].name
-        let alertMessage = "Director: \(movieArray[cellIndex].director)\n" + "Genre: \(movieArray[cellIndex].genre)\n" + "Price: \(movieArray[cellIndex].price)"
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        createAlert(title: alertTitle, message: alertMessage, actionPositive: alertAction)
+        let alertMessage =
+            "\(MovieInfoConstants.director): \(movieArray[cellIndex].director)\n"
+            + "\(MovieInfoConstants.genre): \(movieArray[cellIndex].genre)\n"
+            + "\(MovieInfoConstants.price): \(movieArray[cellIndex].price)"
+        
+        let alertAction = UIAlertAction(title: AlertActionConstants.buttonOk, style: .default, handler: nil)
+        showAlert(title: alertTitle, message: alertMessage, actionPositive: alertAction)
     }
     
-    func updateUITableViewWithMovieData() {
+    /**
+     Update the UI with received movie data. Shows the table view if the result is positive, otherwise hides the table view
+     and shows the no results text label
+     - Parameters: None
+     - Returns: None
+     */
+    func updateUI(noResultText: String? = nil) {
+        //stops showing the loading progress
         SVProgressHUD.dismiss()
         
         if movieArray.count == 0 {
-            noResultLabel = UILabel(frame: CGRect(x: 0, y: searchBar.bounds.height + topDistance, width: view.frame.size.width/2, height: 60))
-            view.addSubview(noResultLabel)
-            noResultLabel.center.x = view.center.x
-            noResultLabel.textColor = UIColor .white
-            noResultLabel.font = UIFont.systemFont(ofSize: 14.0)
-            noResultLabel.textAlignment = .center
-            noResultLabel.lineBreakMode = .byWordWrapping
-            noResultLabel.numberOfLines = 0;
-            noResultLabel.text = "No movies found with title containing \(searchBar.text!)"
-            
-            movieListTableView.isHidden = true
+            if let displayText = noResultText {
+                showNoResultsText(displayText: displayText)
+                movieListTableView.isHidden = true
+            }
         } else {
             movieListTableView.isHidden = false
             noResultLabel.isHidden = true
@@ -126,8 +134,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    //creates alert on call
-    func createAlert(title: String, message: String, actionPositive: UIAlertAction, actionNegative: UIAlertAction? = nil) {
+    /**
+     Creates a no results text label if no movies are found by the query
+     - Parameters: displayText: a String value to display as label text
+     - Returns: None
+     */
+    func showNoResultsText(displayText: String) {
+        noResultLabel = UILabel(frame: CGRect(x: 0, y: searchBar.bounds.height + topDistance, width: view.frame.size.width - (UIViewMarginConstant.leadingMargin + UIViewMarginConstant.trailingMaring), height: view.frame.size.height/2))
+        view.addSubview(noResultLabel)
+        noResultLabel.center.x = view.center.x
+        noResultLabel.textColor = UIColor .white
+        noResultLabel.font = UIFont.systemFont(ofSize: 14.0)
+        noResultLabel.textAlignment = .center
+        noResultLabel.lineBreakMode = .byWordWrapping
+        noResultLabel.numberOfLines = 0
+        noResultLabel.text = displayText
+    }
+    
+    // MARK: Show alert method
+    
+    func showAlert(title: String, message: String, actionPositive: UIAlertAction, actionNegative: UIAlertAction? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
@@ -142,36 +168,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 }
 
-//MARK - Search Bar delegate methods
+// MARK - Search Bar delegate methods
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if searchBar.text?.count != 0 {
             if Connectivity.isConnectedToInternet {
-                movieArray.removeAll(keepingCapacity: true)
+                movieArray.removeAll(keepingCapacity: true) //removes previous search movie items
                 moveSearchBarToTop()
                 let refinedSearchString = searchBar.text?.condenseWhitespace()
                 
                 let encodedSearchString = encodeInputSearchString(searchString: refinedSearchString!)
-                buildURL(searchString: encodedSearchString)
+                if let finalURL = buildURL(searchString: encodedSearchString) {
+                    HTTPRequestCallToGetMovieData(url: finalURL)
+                    searchBar.endEditing(true)
+                } else {
+                    updateUI(noResultText: Constants.systemError)
+                }
                 
             } else {
-                let alertTitle = "No Internet Connection"
-                let alertMessage = "Please connect to internet by WiFi or mobile data"
-                let positiveAction = UIAlertAction(title: "Open Settings",
+                let alertTitle = Constants.noInternet
+                let alertMessage = Constants.connectInternet
+                let positiveAction = UIAlertAction(title: AlertActionConstants.buttonOpenSettings,
                                               style: UIAlertAction.Style.default,
                                               handler: openSettings)
-                let negativeAction = UIAlertAction(title: "Cancel",
+                let negativeAction = UIAlertAction(title: AlertActionConstants.buttonCancel,
                                               style: UIAlertAction.Style.default,
                                               handler: nil)
                 
-                createAlert(title: alertTitle, message: alertMessage, actionPositive: positiveAction, actionNegative: negativeAction)
+                showAlert(title: alertTitle, message: alertMessage, actionPositive: positiveAction, actionNegative: negativeAction)
             }
             
         }
-        
-        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -184,8 +213,13 @@ extension ViewController: UISearchBarDelegate {
         }
     }
     
-    //MARK - Search Bar related methods
+    // MARK: - Search Bar related other methods
     
+    /**
+     Moves search bar from center of the screen to top of the screen after initial search command
+     - Parameters: none
+     - Returns: None
+     */
     func moveSearchBarToTop() {
         if searchBar.center.y == view.center.y {
             let adjustTopMargin = (view.bounds.height/2) - (topDistance + searchBar.bounds.height/2)
@@ -197,11 +231,15 @@ extension ViewController: UISearchBarDelegate {
                             self.view.layoutIfNeeded()
             }, completion: nil)
         }
-        
+        //start showing the loading progress
         SVProgressHUD.show()
-        
     }
     
+    /**
+     Encodes the input string in search bar, mainly removes all spaces with "+" sign as per iTunes api requirement
+     - Parameters: searchString: input text in search field
+     - Returns: an encoded String
+     */
     func encodeInputSearchString(searchString: String)-> String {
         var allowedCharacters = CharacterSet.urlQueryAllowed
         allowedCharacters.insert(charactersIn: " ")
@@ -212,42 +250,46 @@ extension ViewController: UISearchBarDelegate {
         return encoded!
     }
     
-    func buildURL(searchString: String) {
+    /**
+     Builds the final URL to make the HTTP request
+     - Parameters: searchString: encoded input text of the search bar, String type
+     - Returns: a String containing the full URL to request
+     */
+    func buildURL(searchString: String)-> String? {
         let locale = Locale.current
-        
-        let keyMedia: String! = "media"
-        let valueMedia: String! = "movie"
-        let keyEntity: String! = "entity"
-        let valueEntity: String! = "movie"
-        let keyAttr: String! = "attribute"
-        let valueAttr: String! = "movieTerm"
-        let keyLimit: String! = "limit"
-        let valueLimit: String! = "20"
-        let keyLang: String! = "lang"
-        let valueLang: String! = "en_us"
         print(searchString)
-        let queryCriteria = [URLQueryItem(name: "term", value: searchString), URLQueryItem(name: "country", value: locale.regionCode), URLQueryItem(name: keyMedia!, value: valueMedia), URLQueryItem(name: keyEntity!, value: valueEntity), URLQueryItem(name: keyAttr!, value: valueAttr), URLQueryItem(name: keyLimit!, value: valueLimit), URLQueryItem(name: keyLang, value: valueLang )]
+        let queryCriteria = [URLQueryItem(name: ITunesQueryKeyConstants.keyTerm, value: searchString),
+                             URLQueryItem(name: ITunesQueryKeyConstants.keyCountry, value: locale.regionCode),
+                             URLQueryItem(name: ITunesQueryKeyConstants.keyMedia!, value: ITunesQueryValueConstants.valueMovie),
+                             URLQueryItem(name: ITunesQueryKeyConstants.keyEntity!, value: ITunesQueryValueConstants.valueMovie),
+                             URLQueryItem(name: ITunesQueryKeyConstants.keyAttr!, value: ITunesQueryValueConstants.valueMovieTerm),
+                             URLQueryItem(name: ITunesQueryKeyConstants.keyLimit!, value: ITunesQueryValueConstants.valueLimit)]
         
-        let baseURLComps = NSURLComponents(string: api + endpoint)
+        let baseURLComps = NSURLComponents(string: URLConstants.api + URLConstants.endpointSearch)
         baseURLComps?.queryItems = queryCriteria
         let finalURL = baseURLComps?.string
         
-        HTTPRequestCallToGetMovieData(url: finalURL!)
-        searchBar.endEditing(true)
+        return finalURL
     }
     
+    // opens the settings page in iPhone
     func openSettings(alert: UIAlertAction!) {
         if let url = URL.init(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
-    //MARK: Networking call
+    // MARK: HTTP request call
     
+    /**
+     Initiates HTTP request to iTunes server, if success receives data in JSON format
+     - Parameters: url: a String of URL
+     - Returns: None
+     */
     func HTTPRequestCallToGetMovieData(url: String) {
         var httpRequest = URLRequest(url: NSURL.init(string: url)! as URL)
-        httpRequest.httpMethod = "get"
-        httpRequest.timeoutInterval = 15
+        httpRequest.httpMethod = HTTPMethod.get.rawValue
+        httpRequest.timeoutInterval = TimeInterval(URLConstants.timeOutRequest)
         Alamofire.request(httpRequest).responseJSON { response in
             if response.result.isSuccess {
                 print("Success")
@@ -256,14 +298,16 @@ extension ViewController: UISearchBarDelegate {
                 self.updateMovieData(json: movieListJSON)
             } else {
                 print("Error: \(String(describing: response.result.error))")
-                //return nil
+                self.updateUI(noResultText: Constants.ITunesServerError)
             }
         }
     }
     
-    
-    
-    
+    /**
+     Updates the movie array with the search result and call to update UI
+     - Parameters: json: received data in JSON format
+     - Returns: None
+     */
     func updateMovieData(json: JSON) {
         
         if let searchCount = json["resultCount"].int {
@@ -272,15 +316,20 @@ extension ViewController: UISearchBarDelegate {
                 let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: json["results"][movieItem]["releaseDate"].stringValue, directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
                 movieArray.append(movie)
             }
-            updateUITableViewWithMovieData()
+            // call updateUI with a optional no result text if search is successfull with no movie item
+            updateUI(noResultText: Constants.noResult + searchBar.text!)
         } else {
-            
+            updateUI(noResultText: Constants.ITunesServerError)
         }
-            
     }
-    
 }
 
+// MARK: Extended String class
+
+/**
+ An extension of the String class by implementing a function to remove any extra whitespaces in the given input search string.
+ - Returns: a refined String with no extra whitespaces
+ */
 extension String {
     func condenseWhitespace() -> String {
         let components = self.components(separatedBy: .whitespaces)

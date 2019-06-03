@@ -13,6 +13,8 @@
 		214BA65B22A510F6005BE38C /* SearchiTunesMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA65A22A510F6005BE38C /* SearchiTunesMoviesUITests.swift */; };
 		214BA66922A517A4005BE38C /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66822A517A4005BE38C /* Connectivity.swift */; };
 		214BA66B22A52D09005BE38C /* HTTPRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66A22A52D09005BE38C /* HTTPRequestManager.swift */; };
+		214BA66F22A58F73005BE38C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66E22A58F73005BE38C /* Constants.swift */; };
+		214BA67122A5B8C8005BE38C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA67022A5B8C8005BE38C /* HTTPMethod.swift */; };
 		21C33BC622A1943500A8765A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C33BC522A1943500A8765A /* AppDelegate.swift */; };
 		21C33BCD22A1943700A8765A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21C33BCC22A1943700A8765A /* Assets.xcassets */; };
 		21C33BD022A1943700A8765A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C33BCE22A1943700A8765A /* LaunchScreen.storyboard */; };
@@ -52,6 +54,8 @@
 		214BA65C22A510F6005BE38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		214BA66822A517A4005BE38C /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		214BA66A22A52D09005BE38C /* HTTPRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestManager.swift; sourceTree = "<group>"; };
+		214BA66E22A58F73005BE38C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		214BA67022A5B8C8005BE38C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		21C33BC222A1943500A8765A /* SearchiTunesMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchiTunesMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C33BC522A1943500A8765A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21C33BCC22A1943700A8765A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,8 +142,17 @@
 			children = (
 				214BA66822A517A4005BE38C /* Connectivity.swift */,
 				214BA66A22A52D09005BE38C /* HTTPRequestManager.swift */,
+				214BA67022A5B8C8005BE38C /* HTTPMethod.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		214BA66D22A58F5A005BE38C /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				214BA66E22A58F73005BE38C /* Constants.swift */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		21C33BB922A1943500A8765A = {
@@ -167,6 +180,7 @@
 		21C33BC422A1943500A8765A /* SearchiTunesMovies */ = {
 			isa = PBXGroup;
 			children = (
+				214BA66D22A58F5A005BE38C /* SupportingFiles */,
 				214BA66722A5175B005BE38C /* Network */,
 				214BA66422A51281005BE38C /* Controller */,
 				214BA66322A5124C005BE38C /* View */,
@@ -432,6 +446,8 @@
 				21C33BFB22A19B3200A8765A /* MovieListCustomCell.swift in Sources */,
 				21C33BFE22A19F2400A8765A /* Movie.swift in Sources */,
 				214BA65322A510B5005BE38C /* ViewController.swift in Sources */,
+				214BA67122A5B8C8005BE38C /* HTTPMethod.swift in Sources */,
+				214BA66F22A58F73005BE38C /* Constants.swift in Sources */,
 				21C33BC622A1943500A8765A /* AppDelegate.swift in Sources */,
 				214BA66B22A52D09005BE38C /* HTTPRequestManager.swift in Sources */,
 			);
