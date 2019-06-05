@@ -28,7 +28,6 @@ class SearchiTunesMoviesTests: XCTestCase {
         XCTAssert(Encoder.buildURL(searchString: encodedTestString) == "https://itunes.apple.com/search?term=World+war&country=US&media=movie&entity=movie&attribute=movieTerm&limit=20")
         
         let vc: UIViewController = UIViewController()
-        vc.
     }
     
     func testMovieDataModel() {

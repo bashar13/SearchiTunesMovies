@@ -64,6 +64,7 @@
                         <outlet property="movieListTableView" destination="Tgn-xI-rST" id="nw1-62-sQg"/>
                         <outlet property="searchBar" destination="aFh-YW-snZ" id="uMy-W0-87c"/>
                         <outlet property="searchBarVerticalPosition" destination="2bz-cp-m4N" id="6VG-qg-x1C"/>
+                        <outlet property="tableViewTopMargin" destination="Zaz-Ze-ja7" id="Dwu-4b-AeA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

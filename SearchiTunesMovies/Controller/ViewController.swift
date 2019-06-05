@@ -14,6 +14,9 @@ import SVProgressHUD
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    let TAG = "ViewController.swift"
+    
+    @IBOutlet weak var tableViewTopMargin: NSLayoutConstraint!
     @IBOutlet var searchBarVerticalPosition: NSLayoutConstraint!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var movieListTableView: UITableView!
@@ -50,7 +53,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //hide the tableview initially as the list is empty
         movieListTableView.isHidden = true
-       
     }
 
     // MARK: - TableView Data Source Methods
@@ -190,8 +192,8 @@ extension ViewController: UISearchBarDelegate {
             if Connectivity.isConnectedToInternet {
                 movieArray.removeAll(keepingCapacity: true) //removes previous search movie items
                 moveSearchBarToTop()
+                SVProgressHUD.show() //start showing the loading progress
                 let refinedSearchString = searchBar.text?.condenseWhitespace()
-                
                 let encodedSearchString = Encoder.encodeInputSearchString(searchString: refinedSearchString!)
                 if let finalURL = Encoder.buildURL(searchString: encodedSearchString) {
                     HTTPRequestCallToGetMovieData(url: finalURL) { _ in }
@@ -225,17 +227,15 @@ extension ViewController: UISearchBarDelegate {
      */
     func moveSearchBarToTop() {
         if searchBar.center.y == view.center.y {
-            let adjustTopMargin = (view.bounds.height/2) - (topDistance + searchBar.bounds.height/2)
+            let searchBarYPosition = (view.bounds.height/2) - (topDistance + searchBar.bounds.height/2)
             UIView.animate(withDuration: 0.5,
                            delay: 0.0,
                            options: [],
                            animations: {
-                            self.searchBarVerticalPosition.constant -= adjustTopMargin
+                            self.searchBarVerticalPosition.constant -= searchBarYPosition
                             self.view.layoutIfNeeded()
             }, completion: nil)
         }
-        //start showing the loading progress
-        SVProgressHUD.show()
     }
     
     // opens the settings page in iPhone
