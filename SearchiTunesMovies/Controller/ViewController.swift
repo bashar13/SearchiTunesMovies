@@ -105,7 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let alertMessage =
             "\(MovieInfoConstants.director): \(movieArray[cellIndex].director)\n"
             + "\(MovieInfoConstants.genre): \(movieArray[cellIndex].genre)\n"
-            + "\(MovieInfoConstants.price): \(movieArray[cellIndex].price)"
+            + "\(MovieInfoConstants.price): \(movieArray[cellIndex].currency) \(movieArray[cellIndex].price)"
         
         let alertAction = UIAlertAction(title: AlertActionConstants.buttonOk, style: .default, handler: nil)
         showAlert(title: alertTitle, message: alertMessage, actionPositive: alertAction)
@@ -151,7 +151,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         noResultLabel.text = displayText
     }
     
-    // MARK: Show alert method
+    // MARK: alert methods
+    
+    func createNoInternetAlert() {
+        let alertTitle = Constants.noInternetText
+        let alertMessage = Constants.connectInternetText
+        let positiveAction = UIAlertAction(title: AlertActionConstants.buttonOpenSettings,
+                                           style: UIAlertAction.Style.default,
+                                           handler: openSettings)
+        let negativeAction = UIAlertAction(title: AlertActionConstants.buttonCancel,
+                                           style: UIAlertAction.Style.default,
+                                           handler: nil)
+        
+        showAlert(title: alertTitle, message: alertMessage, actionPositive: positiveAction, actionNegative: negativeAction)
+    }
     
     func showAlert(title: String, message: String, actionPositive: UIAlertAction, actionNegative: UIAlertAction? = nil) {
         let alert = UIAlertController(title: title,
@@ -179,25 +192,16 @@ extension ViewController: UISearchBarDelegate {
                 moveSearchBarToTop()
                 let refinedSearchString = searchBar.text?.condenseWhitespace()
                 
-                let encodedSearchString = encodeInputSearchString(searchString: refinedSearchString!)
-                if let finalURL = buildURL(searchString: encodedSearchString) {
-                    HTTPRequestCallToGetMovieData(url: finalURL)
+                let encodedSearchString = Encoder.encodeInputSearchString(searchString: refinedSearchString!)
+                if let finalURL = Encoder.buildURL(searchString: encodedSearchString) {
+                    HTTPRequestCallToGetMovieData(url: finalURL) { _ in }
                     searchBar.endEditing(true)
                 } else {
-                    updateUI(noResultText: Constants.systemError)
+                    updateUI(noResultText: Constants.systemErrorText)
                 }
                 
             } else {
-                let alertTitle = Constants.noInternet
-                let alertMessage = Constants.connectInternet
-                let positiveAction = UIAlertAction(title: AlertActionConstants.buttonOpenSettings,
-                                              style: UIAlertAction.Style.default,
-                                              handler: openSettings)
-                let negativeAction = UIAlertAction(title: AlertActionConstants.buttonCancel,
-                                              style: UIAlertAction.Style.default,
-                                              handler: nil)
-                
-                showAlert(title: alertTitle, message: alertMessage, actionPositive: positiveAction, actionNegative: negativeAction)
+                createNoInternetAlert()
             }
             
         }
@@ -209,7 +213,6 @@ extension ViewController: UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.becomeFirstResponder()
             }
-            
         }
     }
     
@@ -235,43 +238,6 @@ extension ViewController: UISearchBarDelegate {
         SVProgressHUD.show()
     }
     
-    /**
-     Encodes the input string in search bar, mainly removes all spaces with "+" sign as per iTunes api requirement
-     - Parameters: searchString: input text in search field
-     - Returns: an encoded String
-     */
-    func encodeInputSearchString(searchString: String)-> String {
-        var allowedCharacters = CharacterSet.urlQueryAllowed
-        allowedCharacters.insert(charactersIn: " ")
-        
-        var encoded = searchString.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
-        encoded = encoded?.replacingOccurrences(of: " ", with: "+")
-        
-        return encoded!
-    }
-    
-    /**
-     Builds the final URL to make the HTTP request
-     - Parameters: searchString: encoded input text of the search bar, String type
-     - Returns: a String containing the full URL to request
-     */
-    func buildURL(searchString: String)-> String? {
-        let locale = Locale.current
-        print(searchString)
-        let queryCriteria = [URLQueryItem(name: ITunesQueryKeyConstants.keyTerm, value: searchString),
-                             URLQueryItem(name: ITunesQueryKeyConstants.keyCountry, value: locale.regionCode),
-                             URLQueryItem(name: ITunesQueryKeyConstants.keyMedia!, value: ITunesQueryValueConstants.valueMovie),
-                             URLQueryItem(name: ITunesQueryKeyConstants.keyEntity!, value: ITunesQueryValueConstants.valueMovie),
-                             URLQueryItem(name: ITunesQueryKeyConstants.keyAttr!, value: ITunesQueryValueConstants.valueMovieTerm),
-                             URLQueryItem(name: ITunesQueryKeyConstants.keyLimit!, value: ITunesQueryValueConstants.valueLimit)]
-        
-        let baseURLComps = NSURLComponents(string: URLConstants.api + URLConstants.endpointSearch)
-        baseURLComps?.queryItems = queryCriteria
-        let finalURL = baseURLComps?.string
-        
-        return finalURL
-    }
-    
     // opens the settings page in iPhone
     func openSettings(alert: UIAlertAction!) {
         if let url = URL.init(string: UIApplication.openSettingsURLString) {
@@ -286,19 +252,23 @@ extension ViewController: UISearchBarDelegate {
      - Parameters: url: a String of URL
      - Returns: None
      */
-    func HTTPRequestCallToGetMovieData(url: String) {
+    func HTTPRequestCallToGetMovieData(url: String, completion: @escaping(Bool)-> ()) {
         var httpRequest = URLRequest(url: NSURL.init(string: url)! as URL)
         httpRequest.httpMethod = HTTPMethod.get.rawValue
         httpRequest.timeoutInterval = TimeInterval(URLConstants.timeOutRequest)
         Alamofire.request(httpRequest).responseJSON { response in
             if response.result.isSuccess {
-                print("Success")
+                print("Success Success Success Success Success")
                 let movieListJSON: JSON = JSON(response.result.value!)
                 print(movieListJSON)
                 self.updateMovieData(json: movieListJSON)
             } else {
-                print("Error: \(String(describing: response.result.error))")
-                self.updateUI(noResultText: Constants.ITunesServerError)
+                print("Error: \(String(describing: response.result.error)) Error Error Error")
+                if Connectivity.isConnectedToInternet {
+                    self.updateUI(noResultText: Constants.ITunesServerErrorText)
+                } else {
+                    self.createNoInternetAlert()
+                }
             }
         }
     }
@@ -311,15 +281,16 @@ extension ViewController: UISearchBarDelegate {
     func updateMovieData(json: JSON) {
         
         if let searchCount = json["resultCount"].int {
-            print(searchCount)
             for movieItem in 0..<searchCount {
-                let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: json["results"][movieItem]["releaseDate"].stringValue, directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
+                let releaseYear = Encoder.getYearFromReleaseDate(releaseDate: json["results"][movieItem]["releaseDate"].stringValue)
+                
+                let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: "\(MovieInfoConstants.releaseYear): \(releaseYear)", directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, priceCurrency: json["results"][movieItem]["currency"].stringValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
                 movieArray.append(movie)
             }
             // call updateUI with a optional no result text if search is successfull with no movie item
-            updateUI(noResultText: Constants.noResult + searchBar.text!)
+            updateUI(noResultText: Constants.noResultText + searchBar.text!)
         } else {
-            updateUI(noResultText: Constants.ITunesServerError)
+            updateUI(noResultText: Constants.ITunesServerErrorText)
         }
     }
 }

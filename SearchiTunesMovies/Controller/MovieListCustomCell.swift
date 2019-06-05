@@ -2,8 +2,8 @@
 //  MovieListCustomCell.swift
 //  SearchiTunesMovies
 //
-//  Created by Jahid Bashar on 31/5/19.
-//  Copyright © 2019 Jahid Bashar. All rights reserved.
+//  Created by Khairul Bashar on 31/5/19.
+//  Copyright © 2019 Khairul Bashar. All rights reserved.
 //
 
 import UIKit
@@ -23,6 +23,8 @@ class MovieListCustomCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+        self.backgroundColor = .gray
 
         // Configure the view for the selected state
     }

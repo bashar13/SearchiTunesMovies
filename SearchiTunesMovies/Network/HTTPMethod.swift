@@ -2,8 +2,8 @@
 //  HTTPMethod.swift
 //  SearchiTunesMovies
 //
-//  Created by Jahid Bashar on 3/6/19.
-//  Copyright © 2019 Jahid Bashar. All rights reserved.
+//  Created by Khairul Bashar on 3/6/19.
+//  Copyright © 2019 Khairul Bashar. All rights reserved.
 //
 
 import Foundation

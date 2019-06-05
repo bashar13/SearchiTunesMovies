@@ -15,14 +15,16 @@ class Movie {
     var director: String
     var genre: String
     var price: Float
+    var currency: String
     var previewImageURL: String
     
-    init(movieName: String, release: String, directorName: String, movieGenre: String, iTunesPrice: Float, imageURL: String) {
+    init(movieName: String, release: String, directorName: String, movieGenre: String, iTunesPrice: Float, priceCurrency: String,  imageURL: String) {
         name = movieName
         releaseYear = release
         director = directorName
         genre = movieGenre
         price = iTunesPrice
+        currency = priceCurrency
         previewImageURL = imageURL
     }
 }

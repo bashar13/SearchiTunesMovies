@@ -1,9 +1,10 @@
 //
 //  Constants.swift
 //  SearchiTunesMovies
+//  This file contains all the constants we will use throughout the app
 //
-//  Created by Jahid Bashar on 3/6/19.
-//  Copyright © 2019 Jahid Bashar. All rights reserved.
+//  Created by Khairul Bashar on 3/6/19.
+//  Copyright © 2019 Khairul Bashar. All rights reserved.
 //
 
 import UIKit
@@ -34,11 +35,11 @@ struct AlertActionConstants {
 }
 
 struct Constants {
-    static let noResult: String = "No result with title containing "
-    static let systemError: String = "System error: Unable to search, please try again later"
-    static let noInternet: String = "No Internet Connection"
-    static let connectInternet: String = "Please connect to internet by WiFi or mobile data"
-    static let ITunesServerError: String = "Server error: Unable to receive data from iTunes, please try again later"
+    static let noResultText: String = "No result with title containing "
+    static let systemErrorText: String = "System error: Unable to search, please try again later"
+    static let noInternetText: String = "No Internet Connection"
+    static let connectInternetText: String = "Please connect to internet by WiFi or mobile data"
+    static let ITunesServerErrorText: String = "Server error: Unable to receive data from iTunes, please try again later"
 }
 
 struct ITunesQueryKeyConstants {

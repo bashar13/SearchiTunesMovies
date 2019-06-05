@@ -1,9 +1,11 @@
 //
-//  ConnectionManager.swift
+//  Connecttivity.swift
 //  SearchiTunesMovies
+//  This class implements a variable to check the availability of internet connection
+//  whenever the user need to access the internet
 //
-//  Created by Jahid Bashar on 3/6/19.
-//  Copyright © 2019 Jahid Bashar. All rights reserved.
+//  Created by Khairul Bashar on 3/6/19.
+//  Copyright © 2019 Khairul Bashar. All rights reserved.
 //
 
 import Foundation
