@@ -14,9 +14,6 @@ import SVProgressHUD
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let TAG = "ViewController.swift"
-    
-    @IBOutlet weak var tableViewTopMargin: NSLayoutConstraint!
     @IBOutlet var searchBarVerticalPosition: NSLayoutConstraint!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var movieListTableView: UITableView!
@@ -282,7 +279,7 @@ extension ViewController: UISearchBarDelegate {
         
         if let searchCount = json["resultCount"].int {
             for movieItem in 0..<searchCount {
-                let releaseYear = Encoder.getYearFromReleaseDate(releaseDate: json["results"][movieItem]["releaseDate"].stringValue)
+                let releaseYear = Encoder.getYearFromReleaseDate(date: json["results"][movieItem]["releaseDate"].stringValue)
                 
                 let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: "\(MovieInfoConstants.releaseYear): \(releaseYear)", directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, priceCurrency: json["results"][movieItem]["currency"].stringValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
                 movieArray.append(movie)

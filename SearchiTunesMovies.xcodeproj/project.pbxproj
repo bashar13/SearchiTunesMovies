@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2138A85922A5E4D600189D1E /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A85822A5E4D600189D1E /* Encoder.swift */; };
+		1291E425C7C75499A81C29BF /* Pods_SearchiTunesMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B672A1C983684A94DD4CB2 /* Pods_SearchiTunesMoviesTests.framework */; };
 		2138A86222A606B800189D1E /* SearchiTunesMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A86122A606B800189D1E /* SearchiTunesMoviesTests.swift */; };
 		214BA65122A510B5005BE38C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64E22A510B5005BE38C /* Main.storyboard */; };
 		214BA65222A510B5005BE38C /* MovieListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */; };
 		214BA65322A510B5005BE38C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA65022A510B5005BE38C /* ViewController.swift */; };
-		214BA65B22A510F6005BE38C /* SearchiTunesMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA65A22A510F6005BE38C /* SearchiTunesMoviesUITests.swift */; };
 		214BA66922A517A4005BE38C /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66822A517A4005BE38C /* Connectivity.swift */; };
 		214BA66F22A58F73005BE38C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA66E22A58F73005BE38C /* Constants.swift */; };
 		214BA67122A5B8C8005BE38C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214BA67022A5B8C8005BE38C /* HTTPMethod.swift */; };
@@ -21,6 +20,8 @@
 		21C33BD022A1943700A8765A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C33BCE22A1943700A8765A /* LaunchScreen.storyboard */; };
 		21C33BFB22A19B3200A8765A /* MovieListCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C33BF922A19B3200A8765A /* MovieListCustomCell.swift */; };
 		21C33BFE22A19F2400A8765A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C33BFD22A19F2400A8765A /* Movie.swift */; };
+		21EA746422A7C0C6005D4B55 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EA746322A7C0C6005D4B55 /* Encoder.swift */; };
+		21EA746C22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EA746B22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift */; };
 		A65FD4762E5EED73FA083194 /* Pods_SearchiTunesMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9B142BDFD49700BBB32913 /* Pods_SearchiTunesMovies.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,7 @@
 			remoteGlobalIDString = 21C33BC122A1943500A8765A;
 			remoteInfo = SearchiTunesMovies;
 		};
-		214BA65D22A510F6005BE38C /* PBXContainerItemProxy */ = {
+		21EA746E22A7C525005D4B55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21C33BBA22A1943500A8765A /* Project object */;
 			proxyType = 1;
@@ -45,16 +46,12 @@
 		0174C58E84D6A662B744F872 /* Pods-SearchiTunesMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMovies.release.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies.release.xcconfig"; sourceTree = "<group>"; };
 		0A1E7921DCFA96CBC2C1E928 /* Pods_SearchiTunesMoviesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchiTunesMoviesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1489B542E7669284EA0C7292 /* Pods-SearchiTunesMoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMoviesTests.release.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMoviesTests/Pods-SearchiTunesMoviesTests.release.xcconfig"; sourceTree = "<group>"; };
-		2138A85822A5E4D600189D1E /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
 		2138A85F22A606B800189D1E /* SearchiTunesMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchiTunesMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2138A86122A606B800189D1E /* SearchiTunesMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesMoviesTests.swift; sourceTree = "<group>"; };
 		2138A86322A606B800189D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		214BA64E22A510B5005BE38C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieListCustomCell.xib; sourceTree = "<group>"; };
 		214BA65022A510B5005BE38C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		214BA65822A510F6005BE38C /* SearchiTunesMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchiTunesMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		214BA65A22A510F6005BE38C /* SearchiTunesMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesMoviesUITests.swift; sourceTree = "<group>"; };
-		214BA65C22A510F6005BE38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		214BA66822A517A4005BE38C /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		214BA66E22A58F73005BE38C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		214BA67022A5B8C8005BE38C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -65,6 +62,10 @@
 		21C33BD122A1943700A8765A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21C33BF922A19B3200A8765A /* MovieListCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCustomCell.swift; sourceTree = "<group>"; };
 		21C33BFD22A19F2400A8765A /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		21EA746322A7C0C6005D4B55 /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
+		21EA746922A7C525005D4B55 /* SearchiTunesMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchiTunesMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21EA746B22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesMoviesUITests.swift; sourceTree = "<group>"; };
+		21EA746D22A7C525005D4B55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		953182D7B43D963601C4A609 /* Pods-SearchiTunesMoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMoviesUITests.release.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMoviesUITests/Pods-SearchiTunesMoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B2B672A1C983684A94DD4CB2 /* Pods_SearchiTunesMoviesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchiTunesMoviesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3472D2B784F71BA7AF52B2 /* Pods-SearchiTunesMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMovies.debug.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,13 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		214BA65522A510F6005BE38C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				1291E425C7C75499A81C29BF /* Pods_SearchiTunesMoviesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +88,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A65FD4762E5EED73FA083194 /* Pods_SearchiTunesMovies.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21EA746622A7C525005D4B55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,15 +108,6 @@
 				2138A86322A606B800189D1E /* Info.plist */,
 			);
 			path = SearchiTunesMoviesTests;
-			sourceTree = "<group>";
-		};
-		214BA65922A510F6005BE38C /* SearchiTunesMoviesUITests */ = {
-			isa = PBXGroup;
-			children = (
-				214BA65A22A510F6005BE38C /* SearchiTunesMoviesUITests.swift */,
-				214BA65C22A510F6005BE38C /* Info.plist */,
-			);
-			path = SearchiTunesMoviesUITests;
 			sourceTree = "<group>";
 		};
 		214BA66222A5120F005BE38C /* Model */ = {
@@ -157,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				214BA66E22A58F73005BE38C /* Constants.swift */,
-				2138A85822A5E4D600189D1E /* Encoder.swift */,
+				21EA746322A7C0C6005D4B55 /* Encoder.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -166,8 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				21C33BC422A1943500A8765A /* SearchiTunesMovies */,
-				214BA65922A510F6005BE38C /* SearchiTunesMoviesUITests */,
 				2138A86022A606B800189D1E /* SearchiTunesMoviesTests */,
+				21EA746A22A7C525005D4B55 /* SearchiTunesMoviesUITests */,
 				21C33BC322A1943500A8765A /* Products */,
 				2DAD876938EB2921F23708FB /* Pods */,
 				D8E9A99E6865E31EC505A8C7 /* Frameworks */,
@@ -178,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				21C33BC222A1943500A8765A /* SearchiTunesMovies.app */,
-				214BA65822A510F6005BE38C /* SearchiTunesMoviesUITests.xctest */,
 				2138A85F22A606B800189D1E /* SearchiTunesMoviesTests.xctest */,
+				21EA746922A7C525005D4B55 /* SearchiTunesMoviesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +190,15 @@
 				21C33BD122A1943700A8765A /* Info.plist */,
 			);
 			path = SearchiTunesMovies;
+			sourceTree = "<group>";
+		};
+		21EA746A22A7C525005D4B55 /* SearchiTunesMoviesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				21EA746B22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift */,
+				21EA746D22A7C525005D4B55 /* Info.plist */,
+			);
+			path = SearchiTunesMoviesUITests;
 			sourceTree = "<group>";
 		};
 		2DAD876938EB2921F23708FB /* Pods */ = {
@@ -229,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2138A86622A606B800189D1E /* Build configuration list for PBXNativeTarget "SearchiTunesMoviesTests" */;
 			buildPhases = (
+				43B080476329DBDCB06863A2 /* [CP] Check Pods Manifest.lock */,
 				2138A85B22A606B800189D1E /* Sources */,
 				2138A85C22A606B800189D1E /* Frameworks */,
 				2138A85D22A606B800189D1E /* Resources */,
@@ -242,24 +245,6 @@
 			productName = SearchiTunesMoviesTests;
 			productReference = 2138A85F22A606B800189D1E /* SearchiTunesMoviesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		214BA65722A510F6005BE38C /* SearchiTunesMoviesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 214BA65F22A510F6005BE38C /* Build configuration list for PBXNativeTarget "SearchiTunesMoviesUITests" */;
-			buildPhases = (
-				214BA65422A510F6005BE38C /* Sources */,
-				214BA65522A510F6005BE38C /* Frameworks */,
-				214BA65622A510F6005BE38C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				214BA65E22A510F6005BE38C /* PBXTargetDependency */,
-			);
-			name = SearchiTunesMoviesUITests;
-			productName = SearchiTunesMoviesUITests;
-			productReference = 214BA65822A510F6005BE38C /* SearchiTunesMoviesUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		21C33BC122A1943500A8765A /* SearchiTunesMovies */ = {
 			isa = PBXNativeTarget;
@@ -280,6 +265,24 @@
 			productReference = 21C33BC222A1943500A8765A /* SearchiTunesMovies.app */;
 			productType = "com.apple.product-type.application";
 		};
+		21EA746822A7C525005D4B55 /* SearchiTunesMoviesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21EA747022A7C525005D4B55 /* Build configuration list for PBXNativeTarget "SearchiTunesMoviesUITests" */;
+			buildPhases = (
+				21EA746522A7C525005D4B55 /* Sources */,
+				21EA746622A7C525005D4B55 /* Frameworks */,
+				21EA746722A7C525005D4B55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21EA746F22A7C525005D4B55 /* PBXTargetDependency */,
+			);
+			name = SearchiTunesMoviesUITests;
+			productName = SearchiTunesMoviesUITests;
+			productReference = 21EA746922A7C525005D4B55 /* SearchiTunesMoviesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -294,12 +297,12 @@
 						CreatedOnToolsVersion = 10.2.1;
 						TestTargetID = 21C33BC122A1943500A8765A;
 					};
-					214BA65722A510F6005BE38C = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = 21C33BC122A1943500A8765A;
-					};
 					21C33BC122A1943500A8765A = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					21EA746822A7C525005D4B55 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 21C33BC122A1943500A8765A;
 					};
 				};
 			};
@@ -317,21 +320,14 @@
 			projectRoot = "";
 			targets = (
 				21C33BC122A1943500A8765A /* SearchiTunesMovies */,
-				214BA65722A510F6005BE38C /* SearchiTunesMoviesUITests */,
 				2138A85E22A606B800189D1E /* SearchiTunesMoviesTests */,
+				21EA746822A7C525005D4B55 /* SearchiTunesMoviesUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2138A85D22A606B800189D1E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		214BA65622A510F6005BE38C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -349,9 +345,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21EA746722A7C525005D4B55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		43B080476329DBDCB06863A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SearchiTunesMoviesTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5182A11BFB92068A362BDE69 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,19 +438,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		214BA65422A510F6005BE38C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				214BA65B22A510F6005BE38C /* SearchiTunesMoviesUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		21C33BBE22A1943500A8765A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2138A85922A5E4D600189D1E /* Encoder.swift in Sources */,
+				21EA746422A7C0C6005D4B55 /* Encoder.swift in Sources */,
 				214BA66922A517A4005BE38C /* Connectivity.swift in Sources */,
 				21C33BFB22A19B3200A8765A /* MovieListCustomCell.swift in Sources */,
 				21C33BFE22A19F2400A8765A /* Movie.swift in Sources */,
@@ -433,6 +450,14 @@
 				214BA67122A5B8C8005BE38C /* HTTPMethod.swift in Sources */,
 				214BA66F22A58F73005BE38C /* Constants.swift in Sources */,
 				21C33BC622A1943500A8765A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21EA746522A7C525005D4B55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21EA746C22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,10 +469,10 @@
 			target = 21C33BC122A1943500A8765A /* SearchiTunesMovies */;
 			targetProxy = 2138A86422A606B800189D1E /* PBXContainerItemProxy */;
 		};
-		214BA65E22A510F6005BE38C /* PBXTargetDependency */ = {
+		21EA746F22A7C525005D4B55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 21C33BC122A1943500A8765A /* SearchiTunesMovies */;
-			targetProxy = 214BA65D22A510F6005BE38C /* PBXContainerItemProxy */;
+			targetProxy = 21EA746E22A7C525005D4B55 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -465,6 +490,7 @@
 /* Begin XCBuildConfiguration section */
 		2138A86722A606B800189D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDA741F96A51026FF6B9BBEB /* Pods-SearchiTunesMoviesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -485,6 +511,7 @@
 		};
 		2138A86822A606B800189D1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1489B542E7669284EA0C7292 /* Pods-SearchiTunesMoviesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -500,44 +527,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SearchiTunesMovies.app/SearchiTunesMovies";
-			};
-			name = Release;
-		};
-		214BA66022A510F6005BE38C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3SGG42VR5Y;
-				INFOPLIST_FILE = SearchiTunesMoviesUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bashar.SearchiTunesMoviesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SearchiTunesMovies;
-			};
-			name = Debug;
-		};
-		214BA66122A510F6005BE38C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3SGG42VR5Y;
-				INFOPLIST_FILE = SearchiTunesMoviesUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bashar.SearchiTunesMoviesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SearchiTunesMovies;
 			};
 			name = Release;
 		};
@@ -695,6 +684,44 @@
 			};
 			name = Release;
 		};
+		21EA747122A7C525005D4B55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SGG42VR5Y;
+				INFOPLIST_FILE = SearchiTunesMoviesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bashar.SearchiTunesMoviesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SearchiTunesMovies;
+			};
+			name = Debug;
+		};
+		21EA747222A7C525005D4B55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SGG42VR5Y;
+				INFOPLIST_FILE = SearchiTunesMoviesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bashar.SearchiTunesMoviesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SearchiTunesMovies;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -703,15 +730,6 @@
 			buildConfigurations = (
 				2138A86722A606B800189D1E /* Debug */,
 				2138A86822A606B800189D1E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		214BA65F22A510F6005BE38C /* Build configuration list for PBXNativeTarget "SearchiTunesMoviesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				214BA66022A510F6005BE38C /* Debug */,
-				214BA66122A510F6005BE38C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -730,6 +748,15 @@
 			buildConfigurations = (
 				21C33BEB22A1943700A8765A /* Debug */,
 				21C33BEC22A1943700A8765A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21EA747022A7C525005D4B55 /* Build configuration list for PBXNativeTarget "SearchiTunesMoviesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21EA747122A7C525005D4B55 /* Debug */,
+				21EA747222A7C525005D4B55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

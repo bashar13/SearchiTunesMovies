@@ -24,10 +24,9 @@ class SearchiTunesMoviesTests: XCTestCase {
         XCTAssert(testString.condenseWhitespace() == "World war")
         let refinedString = testString.condenseWhitespace()
         XCTAssert(Encoder.encodeInputSearchString(searchString: refinedString) == "World+war")
-        let encodedTestString = Encoder.encodeInputSearchString(searchString: testString)
+        let encodedTestString = Encoder.encodeInputSearchString(searchString: refinedString)
         XCTAssert(Encoder.buildURL(searchString: encodedTestString) == "https://itunes.apple.com/search?term=World+war&country=US&media=movie&entity=movie&attribute=movieTerm&limit=20")
         
-        let vc: UIViewController = UIViewController()
     }
     
     func testMovieDataModel() {
@@ -40,9 +39,6 @@ class SearchiTunesMoviesTests: XCTestCase {
         XCTAssert(movieItem.previewImageURL == "https://is1-ssl.mzstatic.com//image//thumb//Video62//v4//59//b0//3c//59b03c0b-b681-b000-8924-afbb5a70928f//source//100x100bb.jpg")
     }
     
-    func testViewController() {
-        
-    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
