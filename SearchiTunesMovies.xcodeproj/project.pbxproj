@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1291E425C7C75499A81C29BF /* Pods_SearchiTunesMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B672A1C983684A94DD4CB2 /* Pods_SearchiTunesMoviesTests.framework */; };
+		1594E97122E90BB6008C759F /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594E97022E90BB6008C759F /* MovieViewModel.swift */; };
 		2138A86222A606B800189D1E /* SearchiTunesMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A86122A606B800189D1E /* SearchiTunesMoviesTests.swift */; };
 		214BA65122A510B5005BE38C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64E22A510B5005BE38C /* Main.storyboard */; };
 		214BA65222A510B5005BE38C /* MovieListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */; };
@@ -46,6 +47,7 @@
 		0174C58E84D6A662B744F872 /* Pods-SearchiTunesMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMovies.release.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies.release.xcconfig"; sourceTree = "<group>"; };
 		0A1E7921DCFA96CBC2C1E928 /* Pods_SearchiTunesMoviesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchiTunesMoviesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1489B542E7669284EA0C7292 /* Pods-SearchiTunesMoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMoviesTests.release.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMoviesTests/Pods-SearchiTunesMoviesTests.release.xcconfig"; sourceTree = "<group>"; };
+		1594E97022E90BB6008C759F /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		2138A85F22A606B800189D1E /* SearchiTunesMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchiTunesMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2138A86122A606B800189D1E /* SearchiTunesMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesMoviesTests.swift; sourceTree = "<group>"; };
 		2138A86322A606B800189D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1594E96F22E90B75008C759F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1594E97022E90BB6008C759F /* MovieViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1594E97222E934B8008C759F /* CustomMovieCell */ = {
+			isa = PBXGroup;
+			children = (
+				214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */,
+				21C33BF922A19B3200A8765A /* MovieListCustomCell.swift */,
+			);
+			path = CustomMovieCell;
+			sourceTree = "<group>";
+		};
 		2138A86022A606B800189D1E /* SearchiTunesMoviesTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +140,8 @@
 		214BA66322A5124C005BE38C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1594E97222E934B8008C759F /* CustomMovieCell */,
 				214BA64E22A510B5005BE38C /* Main.storyboard */,
-				214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */,
 				21C33BCE22A1943700A8765A /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -132,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				214BA65022A510B5005BE38C /* ViewController.swift */,
-				21C33BF922A19B3200A8765A /* MovieListCustomCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -180,6 +198,7 @@
 		21C33BC422A1943500A8765A /* SearchiTunesMovies */ = {
 			isa = PBXGroup;
 			children = (
+				1594E96F22E90B75008C759F /* ViewModel */,
 				214BA66D22A58F5A005BE38C /* SupportingFiles */,
 				214BA66722A5175B005BE38C /* Network */,
 				214BA66422A51281005BE38C /* Controller */,
@@ -447,6 +466,7 @@
 				21C33BFB22A19B3200A8765A /* MovieListCustomCell.swift in Sources */,
 				21C33BFE22A19F2400A8765A /* Movie.swift in Sources */,
 				214BA65322A510B5005BE38C /* ViewController.swift in Sources */,
+				1594E97122E90BB6008C759F /* MovieViewModel.swift in Sources */,
 				214BA67122A5B8C8005BE38C /* HTTPMethod.swift in Sources */,
 				214BA66F22A58F73005BE38C /* Constants.swift in Sources */,
 				21C33BC622A1943500A8765A /* AppDelegate.swift in Sources */,
@@ -661,7 +681,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bashar.SearchiTunesMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -680,7 +700,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bashar.SearchiTunesMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

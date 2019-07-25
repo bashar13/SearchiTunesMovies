@@ -17,8 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var searchBarVerticalPosition: NSLayoutConstraint!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var movieListTableView: UITableView!
-    var noResultLabel = UILabel()
+    var noResultLabel: UILabel?
     var movieArray: [Movie] = [Movie] ()
+    var movieViewModelArray: [MovieViewModel] = [MovieViewModel]()
     
     //measure the total height of status bar + navigation bar
     var topDistance : CGFloat {
@@ -61,12 +62,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMovieCell", for: indexPath) as! MovieListCustomCell
-        
-        cell.movieName.text = movieArray[indexPath.row].name
-        cell.movieReleaseYear.text = movieArray[indexPath.row].releaseYear
-        let url = URL(string: movieArray[indexPath.row].previewImageURL)
-        let noPreviewImage = UIImage(named: TableViewConstants.noPreviewImage)
-        cell.movieImageView.kf.setImage(with: url, placeholder: noPreviewImage)
+        let movieViewModel = movieViewModelArray[indexPath.row]
+        cell.movieViewModel = movieViewModel
         
         return cell
     }
@@ -120,14 +117,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //stops showing the loading progress
         SVProgressHUD.dismiss()
         
-        if movieArray.count == 0 {
+        if movieViewModelArray.count == 0 {
             if let displayText = noResultText {
                 showNoResultsText(displayText: displayText)
                 movieListTableView.isHidden = true
             }
         } else {
             movieListTableView.isHidden = false
-            noResultLabel.isHidden = true
+            if let label = noResultLabel {
+                label.isHidden = true
+            }
         }
         movieListTableView.reloadData()
         
@@ -139,15 +138,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      - Returns: None
      */
     func showNoResultsText(displayText: String) {
-        noResultLabel = UILabel(frame: CGRect(x: 0, y: searchBar.bounds.height + topDistance, width: view.frame.size.width - (UIViewMarginConstant.leadingMargin + UIViewMarginConstant.trailingMaring), height: view.frame.size.height/2))
-        view.addSubview(noResultLabel)
-        noResultLabel.center.x = view.center.x
-        noResultLabel.textColor = UIColor .white
-        noResultLabel.font = UIFont.systemFont(ofSize: 14.0)
-        noResultLabel.textAlignment = .center
-        noResultLabel.lineBreakMode = .byWordWrapping
-        noResultLabel.numberOfLines = 0
-        noResultLabel.text = displayText
+        if let label = noResultLabel {
+            label.text = displayText
+        } else {
+            noResultLabel = UILabel(frame: CGRect(x: 0, y: searchBar.bounds.height + topDistance, width: view.frame.size.width - (UIViewMarginConstant.leadingMargin + UIViewMarginConstant.trailingMaring), height: view.frame.size.height/2))
+            view.addSubview(noResultLabel!)
+            noResultLabel!.center.x = view.center.x
+            noResultLabel!.textColor = UIColor .white
+            noResultLabel!.font = UIFont.systemFont(ofSize: 14.0)
+            noResultLabel!.textAlignment = .center
+            noResultLabel!.lineBreakMode = .byWordWrapping
+            noResultLabel!.numberOfLines = 0
+            noResultLabel!.text = displayText
+        }
+        
     }
     
     // MARK: alert methods
@@ -284,6 +288,7 @@ extension ViewController: UISearchBarDelegate {
                 let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: "\(MovieInfoConstants.releaseYear): \(releaseYear)", directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, priceCurrency: json["results"][movieItem]["currency"].stringValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
                 movieArray.append(movie)
             }
+            movieViewModelArray = movieArray.map({return MovieViewModel(movie: $0)})
             // call updateUI with a optional no result text if search is successfull with no movie item
             updateUI(noResultText: Constants.noResultText + searchBar.text!)
         } else {

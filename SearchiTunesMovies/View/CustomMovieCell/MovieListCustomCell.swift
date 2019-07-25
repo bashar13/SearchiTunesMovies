@@ -14,7 +14,14 @@ class MovieListCustomCell: UITableViewCell {
     @IBOutlet var movieName: UILabel!
     @IBOutlet var movieReleaseYear: UILabel!
     
-    
+    var movieViewModel: MovieViewModel! {
+        didSet {
+            movieName.text = movieViewModel.name
+            movieReleaseYear.text = movieViewModel.year
+            movieImageView.kf.setImage(with: movieViewModel.imageURL, placeholder: movieViewModel.noPreviewImage)
+            
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
