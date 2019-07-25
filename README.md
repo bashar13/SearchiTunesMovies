@@ -1,4 +1,6 @@
 # SearchiTunesMovies
+To run this application, you need cocoapods installed in your computer.
+
 A simple demonstration of -
 - Using CocoaPods to manage and use open source code libraries
 - Using Model View Controller (MVC) pattern
