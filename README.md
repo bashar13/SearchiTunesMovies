@@ -3,7 +3,7 @@ To run this application, you need cocoapods installed in your computer.
 
 A simple demonstration of -
 - Using CocoaPods to manage and use open source code libraries
-- Using Model View Controller (MVC) pattern
+- Using Model View View-Model (MVVM) pattern
 - Networking call to iTunes server using Alamofire (API call)
 - Handling response from the server
 - Parsing data organized in JSON format
