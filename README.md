@@ -6,7 +6,7 @@ A simple demonstration of -
 - Using Model View View-Model (MVVM) pattern
 - Networking call to iTunes server using Alamofire (API call)
 - Handling response from the server
-- Parsing data organized in JSON format
+- Parsing data organized in JSON format by using Codable SDK
 - using computed property variable
 - class extention
 - Table View Controller with custom cell
