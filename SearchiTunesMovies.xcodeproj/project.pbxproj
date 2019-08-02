@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1291E425C7C75499A81C29BF /* Pods_SearchiTunesMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B672A1C983684A94DD4CB2 /* Pods_SearchiTunesMoviesTests.framework */; };
 		1594E97122E90BB6008C759F /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594E97022E90BB6008C759F /* MovieViewModel.swift */; };
+		15B4290D22F3C47700AC781D /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B4290C22F3C47700AC781D /* MovieResult.swift */; };
 		2138A86222A606B800189D1E /* SearchiTunesMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A86122A606B800189D1E /* SearchiTunesMoviesTests.swift */; };
 		214BA65122A510B5005BE38C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64E22A510B5005BE38C /* Main.storyboard */; };
 		214BA65222A510B5005BE38C /* MovieListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 214BA64F22A510B5005BE38C /* MovieListCustomCell.xib */; };
@@ -24,6 +25,7 @@
 		21EA746422A7C0C6005D4B55 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EA746322A7C0C6005D4B55 /* Encoder.swift */; };
 		21EA746C22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EA746B22A7C525005D4B55 /* SearchiTunesMoviesUITests.swift */; };
 		A65FD4762E5EED73FA083194 /* Pods_SearchiTunesMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9B142BDFD49700BBB32913 /* Pods_SearchiTunesMovies.framework */; };
+		C3F98DDF924252E9A47A2F83 /* Pods_SearchiTunesMoviesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1E7921DCFA96CBC2C1E928 /* Pods_SearchiTunesMoviesUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 		0A1E7921DCFA96CBC2C1E928 /* Pods_SearchiTunesMoviesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchiTunesMoviesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1489B542E7669284EA0C7292 /* Pods-SearchiTunesMoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchiTunesMoviesTests.release.xcconfig"; path = "Target Support Files/Pods-SearchiTunesMoviesTests/Pods-SearchiTunesMoviesTests.release.xcconfig"; sourceTree = "<group>"; };
 		1594E97022E90BB6008C759F /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		15B4290C22F3C47700AC781D /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		2138A85F22A606B800189D1E /* SearchiTunesMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchiTunesMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2138A86122A606B800189D1E /* SearchiTunesMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesMoviesTests.swift; sourceTree = "<group>"; };
 		2138A86322A606B800189D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3F98DDF924252E9A47A2F83 /* Pods_SearchiTunesMoviesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				21C33BFD22A19F2400A8765A /* Movie.swift */,
+				15B4290C22F3C47700AC781D /* MovieResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21EA747022A7C525005D4B55 /* Build configuration list for PBXNativeTarget "SearchiTunesMoviesUITests" */;
 			buildPhases = (
+				672B22CB69DD378F062E02A1 /* [CP] Check Pods Manifest.lock */,
 				21EA746522A7C525005D4B55 /* Sources */,
 				21EA746622A7C525005D4B55 /* Frameworks */,
 				21EA746722A7C525005D4B55 /* Resources */,
@@ -402,26 +408,37 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SearchiTunesMovies/Pods-SearchiTunesMovies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		672B22CB69DD378F062E02A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SearchiTunesMoviesUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B9D846A01E824AC14DF7486F /* [CP] Check Pods Manifest.lock */ = {
@@ -464,6 +481,7 @@
 				21EA746422A7C0C6005D4B55 /* Encoder.swift in Sources */,
 				214BA66922A517A4005BE38C /* Connectivity.swift in Sources */,
 				21C33BFB22A19B3200A8765A /* MovieListCustomCell.swift in Sources */,
+				15B4290D22F3C47700AC781D /* MovieResult.swift in Sources */,
 				21C33BFE22A19F2400A8765A /* Movie.swift in Sources */,
 				214BA65322A510B5005BE38C /* ViewController.swift in Sources */,
 				1594E97122E90BB6008C759F /* MovieViewModel.swift in Sources */,
@@ -706,6 +724,7 @@
 		};
 		21EA747122A7C525005D4B55 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7BEB328426F72918308CE20 /* Pods-SearchiTunesMoviesUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3SGG42VR5Y;
@@ -725,6 +744,7 @@
 		};
 		21EA747222A7C525005D4B55 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 953182D7B43D963601C4A609 /* Pods-SearchiTunesMoviesUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3SGG42VR5Y;

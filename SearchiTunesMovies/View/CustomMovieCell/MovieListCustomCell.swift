@@ -16,8 +16,8 @@ class MovieListCustomCell: UITableViewCell {
     
     var movieViewModel: MovieViewModel! {
         didSet {
-            movieName.text = movieViewModel.name
-            movieReleaseYear.text = movieViewModel.year
+            movieName.text = movieViewModel.movieName
+            movieReleaseYear.text = "\(MovieInfoConstants.releaseYear): \(movieViewModel.releaseYear)"
             movieImageView.kf.setImage(with: movieViewModel.imageURL, placeholder: movieViewModel.noPreviewImage)
             
         }

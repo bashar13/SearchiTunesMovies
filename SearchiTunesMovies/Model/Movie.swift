@@ -8,23 +8,14 @@
 
 import Foundation
 
-class Movie {
+struct Movie: Codable {
     
-    var name: String
-    var releaseYear: String
-    var director: String
-    var genre: String
-    var price: Float
-    var currency: String
-    var previewImageURL: String
+    let trackName: String
+    let releaseDate: String
+    let artistName: String
+    let primaryGenreName: String
+    let trackPrice: Float
+    let currency: String
+    let artworkUrl100: String
     
-    init(movieName: String, release: String, directorName: String, movieGenre: String, iTunesPrice: Float, priceCurrency: String,  imageURL: String) {
-        name = movieName
-        releaseYear = release
-        director = directorName
-        genre = movieGenre
-        price = iTunesPrice
-        currency = priceCurrency
-        previewImageURL = imageURL
-    }
 }

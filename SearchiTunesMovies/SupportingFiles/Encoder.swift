@@ -63,3 +63,16 @@ class Encoder {
     }
     
 }
+
+// MARK: Extended String class
+
+/**
+ An extension of the String class by implementing a function to remove any extra whitespaces in the given input search string.
+ - Returns: a refined String with no extra whitespaces
+ */
+extension String {
+    func condenseWhitespace() -> String {
+        let components = self.components(separatedBy: .whitespaces)
+        return components.filter { !$0.isEmpty }.joined(separator: " ")
+    }
+}

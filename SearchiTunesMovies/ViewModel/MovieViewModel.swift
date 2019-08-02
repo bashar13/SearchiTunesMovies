@@ -11,16 +11,24 @@ import UIKit
 
 struct MovieViewModel {
     
-    let name: String
-    let year: String
+    let movieName: String
+    let releaseYear: String
+    let director: String
+    let genre: String
+    let price: Float
+    let currency: String
     let imageURL: URL
     
     let noPreviewImage: UIImage
     
     init(movie: Movie) {
-        self.name = movie.name
-        self.year = movie.releaseYear
-        self.imageURL = URL(string: movie.previewImageURL)!
+        movieName = movie.trackName
+        releaseYear = Encoder.getYearFromReleaseDate(date: movie.releaseDate)
+        director = movie.artistName
+        genre = movie.primaryGenreName
+        price = movie.trackPrice
+        currency = movie.currency
+        imageURL = URL(string: movie.artworkUrl100)!
         
         self.noPreviewImage = UIImage(named: TableViewConstants.noPreviewImage)!
     }

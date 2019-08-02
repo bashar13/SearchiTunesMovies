@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 import Kingfisher
 import SVProgressHUD
 
@@ -18,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var movieListTableView: UITableView!
     var noResultLabel: UILabel?
-    var movieArray: [Movie] = [Movie] ()
+    var movieResult: MovieResult?
     var movieViewModelArray: [MovieViewModel] = [MovieViewModel]()
     
     //measure the total height of status bar + navigation bar
@@ -56,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - TableView Data Source Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieArray.count
+        return movieViewModelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,11 +96,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      */
     func showMovieDetailPopUp(cellIndex: Int) {
         
-        let alertTitle = movieArray[cellIndex].name
+        let alertTitle = movieViewModelArray[cellIndex].movieName
         let alertMessage =
-            "\(MovieInfoConstants.director): \(movieArray[cellIndex].director)\n"
-            + "\(MovieInfoConstants.genre): \(movieArray[cellIndex].genre)\n"
-            + "\(MovieInfoConstants.price): \(movieArray[cellIndex].currency) \(movieArray[cellIndex].price)"
+            "\(MovieInfoConstants.director): \(movieViewModelArray[cellIndex].director)\n"
+            + "\(MovieInfoConstants.genre): \(movieViewModelArray[cellIndex].genre)\n"
+            + "\(MovieInfoConstants.price): \(movieViewModelArray[cellIndex].currency) \(movieViewModelArray[cellIndex].price)"
         
         let alertAction = UIAlertAction(title: AlertActionConstants.buttonOk, style: .default, handler: nil)
         showAlert(title: alertTitle, message: alertMessage, actionPositive: alertAction)
@@ -120,16 +119,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if movieViewModelArray.count == 0 {
             if let displayText = noResultText {
                 showNoResultsText(displayText: displayText)
-                movieListTableView.isHidden = true
+            } else {
+                showNoResultsText(displayText: Constants.noResultText + searchBar.text!)
             }
+            movieListTableView.isHidden = true
+            
         } else {
             movieListTableView.isHidden = false
             if let label = noResultLabel {
                 label.isHidden = true
             }
+            movieListTableView.reloadData()
         }
-        movieListTableView.reloadData()
-        
     }
     
     /**
@@ -191,7 +192,7 @@ extension ViewController: UISearchBarDelegate {
         
         if searchBar.text?.count != 0 {
             if Connectivity.isConnectedToInternet {
-                movieArray.removeAll(keepingCapacity: true) //removes previous search movie items
+                movieViewModelArray.removeAll(keepingCapacity: true) //removes previous search movie items
                 moveSearchBarToTop()
                 SVProgressHUD.show() //start showing the loading progress
                 let refinedSearchString = searchBar.text?.condenseWhitespace()
@@ -257,12 +258,20 @@ extension ViewController: UISearchBarDelegate {
         var httpRequest = URLRequest(url: NSURL.init(string: url)! as URL)
         httpRequest.httpMethod = HTTPMethod.get.rawValue
         httpRequest.timeoutInterval = TimeInterval(URLConstants.timeOutRequest)
-        Alamofire.request(httpRequest).responseJSON { response in
+        Alamofire.request(httpRequest).responseData { response in
             if response.result.isSuccess {
                 print("Success Success Success Success Success")
-                let movieListJSON: JSON = JSON(response.result.value!)
-                print(movieListJSON)
-                self.updateMovieData(json: movieListJSON)
+                guard let data = response.result.value else { return }
+                do {
+                    let decoder = JSONDecoder()
+                    self.movieResult = try decoder.decode(MovieResult.self, from: data)
+                    DispatchQueue.main.async {
+                        self.movieViewModelArray = self.movieResult!.results.map({return MovieViewModel(movie: $0)})
+                        self.updateUI()
+                    }
+                } catch let jsonErr {
+                    print("Failed to decode", jsonErr)
+                }
             } else {
                 print("Error: \(String(describing: response.result.error)) Error Error Error")
                 if Connectivity.isConnectedToInternet {
@@ -272,41 +281,6 @@ extension ViewController: UISearchBarDelegate {
                 }
             }
         }
-    }
-    
-    /**
-     Updates the movie array with the search result and call to update UI
-     - Parameters: json: received data in JSON format
-     - Returns: None
-     */
-    func updateMovieData(json: JSON) {
-        
-        if let searchCount = json["resultCount"].int {
-            for movieItem in 0..<searchCount {
-                let releaseYear = Encoder.getYearFromReleaseDate(date: json["results"][movieItem]["releaseDate"].stringValue)
-                
-                let movie = Movie(movieName: json["results"][movieItem]["trackName"].stringValue, release: "\(MovieInfoConstants.releaseYear): \(releaseYear)", directorName: json["results"][movieItem]["artistName"].stringValue, movieGenre: json["results"][movieItem]["primaryGenreName"].stringValue, iTunesPrice: json["results"][movieItem]["trackPrice"].floatValue, priceCurrency: json["results"][movieItem]["currency"].stringValue, imageURL: json["results"][movieItem]["artworkUrl100"].stringValue)
-                movieArray.append(movie)
-            }
-            movieViewModelArray = movieArray.map({return MovieViewModel(movie: $0)})
-            // call updateUI with a optional no result text if search is successfull with no movie item
-            updateUI(noResultText: Constants.noResultText + searchBar.text!)
-        } else {
-            updateUI(noResultText: Constants.ITunesServerErrorText)
-        }
-    }
-}
-
-// MARK: Extended String class
-
-/**
- An extension of the String class by implementing a function to remove any extra whitespaces in the given input search string.
- - Returns: a refined String with no extra whitespaces
- */
-extension String {
-    func condenseWhitespace() -> String {
-        let components = self.components(separatedBy: .whitespaces)
-        return components.filter { !$0.isEmpty }.joined(separator: " ")
     }
 }
 

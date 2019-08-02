@@ -7,7 +7,6 @@ target 'SearchiTunesMovies' do
 
   # Pods for SearchiTunesMovies
     pod 'Alamofire'
-    pod 'SwiftyJSON'
     pod 'SVProgressHUD'
     pod 'Kingfisher'
 
